@@ -10,6 +10,7 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 CRON_LOGIN='admin4cron'
 CRON_PWD='xxxxxx'
+PIWIGO_URL="http://localhost/"
 DURATION=3600 # in seconds
 URLS_PER_LOOP=50
 
@@ -21,11 +22,11 @@ get_urls () {
     # See http://<piwigo hostname>/tools/ws.htm.
     curl --silent --output /dev/null --cookie-jar "$cookie_file" \
       --data "method=pwg.session.login&username=${CRON_LOGIN}&password=${CRON_PWD}" \
-      "http://localhost/ws.php?format=json"
+      "${PIWIGO_URL}/ws.php?format=json"
 
     # Get a json of the urls to visit with the "pwg.getMissingDerivatives" method.
     json=$(curl --silent --cookie "$cookie_file" \
-      "http://localhost/ws.php?format=json&method=pwg.getMissingDerivatives&max_urls=${URLS_PER_LOOP}")
+      "${PIWIGO_URL}/ws.php?format=json&method=pwg.getMissingDerivatives&max_urls=${URLS_PER_LOOP}")
 
     rm -f "$cookie_file"
 
