@@ -8,9 +8,8 @@ export LC_ALL=C
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 
-PIWIGO_LOGIN='admin4cron'
-PIWIGO_PWD='xxxxxx'
-PIWIGO_URL="http://localhost/"
+. "$(dirname "$0")/credentials.sh"
+
 DURATION=3600 # in seconds
 URLS_PER_LOOP=50
 
