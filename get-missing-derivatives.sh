@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Cron script to generate pictures.
 # See http://fr.piwigo.org/forum/viewtopic.php?pid=207043
