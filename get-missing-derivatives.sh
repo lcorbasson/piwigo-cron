@@ -8,8 +8,8 @@ export LC_ALL=C
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 
-CRON_LOGIN='admin4cron'
-CRON_PWD='xxxxxx'
+PIWIGO_LOGIN='admin4cron'
+PIWIGO_PWD='xxxxxx'
 PIWIGO_URL="http://localhost/"
 DURATION=3600 # in seconds
 URLS_PER_LOOP=50
@@ -21,7 +21,7 @@ get_urls () {
     # Connection with the cron account via the Piwigo API.
     # See http://<piwigo hostname>/tools/ws.htm.
     curl --silent --output /dev/null --cookie-jar "$cookie_file" \
-      --data "method=pwg.session.login&username=${CRON_LOGIN}&password=${CRON_PWD}" \
+      --data "method=pwg.session.login&username=${PIWIGO_LOGIN}&password=${PIWIGO_PWD}" \
       "${PIWIGO_URL}/ws.php?format=json"
 
     # Get a json of the urls to visit with the "pwg.getMissingDerivatives" method.
