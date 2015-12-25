@@ -13,14 +13,14 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 DURATION=3600 # in seconds
 URLS_PER_LOOP=50
 
-
 get_urls () {
-    cookie_file=$(mktemp)
+    cookie_file="$(mktemp)"
 
     # Connection with the cron account via the Piwigo API.
     # See http://<piwigo hostname>/tools/ws.htm.
+    # TODO: urlencode LOGIN and PWD
     curl --silent --output /dev/null --cookie-jar "$cookie_file" \
-      --data "method=pwg.session.login&username=${PIWIGO_LOGIN}&password=${PIWIGO_PWD}" \
+      --data "method=pwg.session.login&username=${PIWIGO_LOGIN}&password=${PIWIGO_PASSWD}" \
       "${PIWIGO_URL}/ws.php?format=json"
 
     # Get a json of the urls to visit with the "pwg.getMissingDerivatives" method.
