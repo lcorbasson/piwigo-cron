@@ -8,10 +8,10 @@ export LC_ALL=C
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 
-. "$(dirname "$0")/credentials.sh"
-
 DURATION=3600 # in seconds
 URLS_PER_LOOP=50
+
+. "$(dirname "$0")/credentials.sh"
 
 PIWIGO_URL="${PIWIGO_URL%/}"	# remove trailing slash to avoid unnecessary HTTP 301's
 
