@@ -20,9 +20,8 @@ get_urls () {
 
     # Connection with the cron account via the Piwigo API.
     # See http://<piwigo hostname>/tools/ws.htm.
-    # TODO: urlencode LOGIN and PWD
     curl --silent --output /dev/null --cookie-jar "$cookie_file" \
-      --data "method=pwg.session.login&username=${PIWIGO_LOGIN}&password=${PIWIGO_PASSWD}" \
+      --data-urlencode "method=pwg.session.login" --data-urlencode "username=${PIWIGO_LOGIN}" --data-urlencode "password=${PIWIGO_PASSWD}" \
       "${PIWIGO_URL}/ws.php?format=json"
 
     # Get a json of the urls to visit with the "pwg.getMissingDerivatives" method.
